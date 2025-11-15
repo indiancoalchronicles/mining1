@@ -1,16 +1,15 @@
 <!doctype html>
 <html lang="en">
 <head>
-  
-<link rel="manifest" href="manifest.json">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Mining Exam">
-<link rel="apple-touch-icon" href="url('https://img1.wsimg.com/isteam/ip/0bf70def-deca-417e-962f-b76f39b1865e/mine-haul-truck-banner.jpg');">
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>GATE-style Mining Exam — 65 Qs</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Mining Exam">
+  <link rel="apple-touch-icon" href="https://img1.wsimg.com/isteam/ip/0bf70def-deca-417e-962f-b76f39b1865e/mine-haul-truck-banner.jpg">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>GATE-style Mining Exam — 65 Qs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --accent:#FFD700;
@@ -27,9 +26,7 @@
   --not-answered: #e74c3c; /* red */
 }
 
-/* your existing CSS… */
-
-/* ✅ Add legend styling here */
+/* legend styling */
 .legend {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -52,7 +49,7 @@
   border-radius: 3px;
 }
 
-/* count styles (minimal, color-coded) */
+/* count styles */
 .legend .count {
   font-weight: 700;
   margin-left: 6px;
@@ -64,16 +61,16 @@
 .legend .count.not-answered { color: var(--not-answered); }
 
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{  height:100%;  font-family: "Times New Roman", Times, serif;  background:#000;  color:#fff;}
+html,body{  height:100%;  font-family: "Times New Roman", Times, serif;  background:#fff;  color:#000;}
 
 .container-wrap{
   min-height:100vh;
-  background-image: url('https://img1.wsimg.com/isteam/ip/0bf70def-deca-417e-962f-b76f39b1865e/mine-haul-truck-banner.jpg');
+  background-image: url('https://raw.githubusercontent.com/indiancoalchronicles/mining1/refs/heads/main/background.png');
   background-size:cover;background-position:center center;
   display:flex;align-items:center;justify-content:center;position:relative;
 }
-.overlay{position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.6));z-index:0}
-.card{position:relative;z-index:2;background:var(--bg-panel);border-radius:14px;padding:18px;backdrop-filter:blur(8px);border:1px solid var(--card-border);box-shadow:0 20px 60px rgba(0,0,0,0.6);width:1100px;max-width:96%}
+.overlay{position:absolute;inset:0;background:linear-gradient(180deg, rgba(255,255,255,0.25),  rgba(255,255,255,0.40));z-index:0}
+.card{position:relative;z-index:2;background:var(--bg-panel);border-radius:14px;padding:18px;backdrop-filter:blur(8px);border:1px solid var(--card-border);box-shadow:0 20px 60px rgba(255,255,255,0.25);width:1100px;max-width:96%}
 .welcome{padding:30px;text-align:center}
 .welcome h1{color:var(--accent);margin-bottom:6px}
 .welcome p{color:var(--muted);margin-bottom:12px}
@@ -87,9 +84,69 @@ html,body{  height:100%;  font-family: "Times New Roman", Times, serif;  backgro
 .right{flex-basis:32%;min-width:260px}
 .qmeta{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
 .qnum{font-size:14px;color:var(--muted)}
-.qtext{font-size:18px;margin:10px 0;line-height:1.35}
+
+/* === QUESTION AREA: FULL WHITE bg + black text for everything inside === */
+.qtext{
+  font-size:18px;
+  margin:10px 0;
+  line-height:1.35;
+  background: #ffffff;                 /* full white background */
+  color: #000;                         /* black text */
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  overflow:auto;
+}
+
+/* force tables and any inline-styled white-on-dark to become black-on-white inside question area
+   and give clear solid borders (th/td) */
+.qtext table,
+.qtext thead,
+.qtext tbody,
+.qtext tfoot,
+.qtext th,
+.qtext td,
+.qtext tr {
+  color: #000 !important;
+  background: #fff !important;
+  border-color: #000 !important;
+  border: 1px solid rgba(0,0,0,0.9) !important;
+  border-collapse: collapse !important;
+  padding:6px !important;
+}
+
+/* ensure table element itself uses border-collapse so lines are crisp */
+.qtext table {
+  border-collapse: collapse !important;
+  width: 100% !important;
+}
+
+/* header shading (subtle) but black text */
+.qtext thead th {
+  background: #f7f7f7 !important;
+  color: #000 !important;
+  font-weight:700 !important;
+}
+
+/* also ensure inline style colors inside options / questions render black */
+.qtext * { color: #000 !important; }
+
+.qtext img { border: none !important; } /* ensure any remaining img borders removed inside qtext */
+
+/* options - keep them readable and distinct */
 .options{display:flex;flex-direction:column;gap:8px}
-.opt{padding:10px 12px;border-radius:10px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);cursor:pointer;text-align:left}
+.opt{
+  padding:10px 12px;border-radius:10px;
+  background: rgba(255,255,255,0.98);
+  border:1px solid rgba(0,0,0,0.06);
+  cursor:pointer;text-align:left;
+  color:#000;               /* black option text */
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.opt input{ margin-right:8px; }
 .opt.selected{outline:2px solid rgba(255,204,0,0.6)}
 .timer{font-weight:700;color:var(--accent);font-size:24px;text-align:right}
 .palette{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
@@ -97,7 +154,6 @@ html,body{  height:100%;  font-family: "Times New Roman", Times, serif;  backgro
 .pmini.answered {  background: var(--answered);}
 .pmini.not-answered {  background: var(--not-answered);}
 .pmini.review {  background: var(--review);  color: #fff;}
-.pmini.active { outline: 3px solid var(--accent); }
 .pmini.active{outline:3px solid rgba(255,204,0,0.4)}
 .controls{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
 .small{font-size:13px;color:var(--muted)}
@@ -189,23 +245,23 @@ html,body{  height:100%;  font-family: "Times New Roman", Times, serif;  backgro
           <button id="clearBtn" class="btn ghost" aria-label="Clear selected option">Clear Response</button>
           <button id="prevBtn" class="btn ghos" aria-label="Previous question">Previous</button>
           <button id="nextBtn" class="btn" aria-label="Save and go to next question">Save & Next</button>
-          <button id="saveMarkBtn" class="btn gho" aria-label="Save and mark for review">Save & Mark for Review</button>
+          <!-- Save & Mark for Review button removed as requested -->
           <button id="reviewNextBtn" class="btn gho" aria-label="Mark for review and go to next">Mark for Review & Next</button>
         </div>
 
         <div class="small" id="qmarks">1 mark • MCQ</div>
       </div>
 
-      <div id="explain" class="small hidden" style="margin-top:10px;background:rgba(0,0,0,0.25);padding:10px;border-radius:8px"></div>
+      <div id="explain" class="small hidden" style="margin-top:10px;background:rgba(0,0,0,0.05);padding:10px;border-radius:8px;color:#000"></div>
     </div>
 
     <div class="right">
       <div>
-        <strong>Question Palette</strong>
+        <strong style="color:#fff">Question Palette</strong>
         <div class="palette" id="palette" aria-live="polite" style="margin-top:8px"></div>
       </div>
 
-      <!-- Color Legend (enhanced with counts) -->
+      <!-- Color Legend (kept all items) -->
       <div class="legend" aria-hidden="false" style="margin-top:12px">
         <div><span style="background: var(--answered);"></span> Answered <span id="count-answered" class="count answered">(0)</span></div>
         <div><span style="background: var(--review);"></span> Marked for Review <span id="count-review" class="count review">(0)</span></div>
@@ -235,7 +291,7 @@ html,body{  height:100%;  font-family: "Times New Roman", Times, serif;  backgro
 
 <script>
 /* --------------------------
-  Helper funcs + dataset (kept your data and behaviour)
+  Helper funcs + dataset
 --------------------------- */
 
 function marksForQ(qno){
@@ -247,7 +303,7 @@ function negativeForQ(qno){
   return marksForQ(qno) === 1 ? (1/3) : (2/3);
 }
 
-/* QUESTIONS — inserted as provided (65 items) */
+/* QUESTIONS — NATs include answerMin/answerMax ranges */
 const QUESTIONS = [
   {qno:1, section:'GA', type:'mcq', marks:marksForQ(1), question:" If ‘→’ denotes increasing order of intensity, then the meaning of the words  [drizzle → rain → downpour] is analogous to [ ______  → quarrel → feud].  Which one of the given options is appropriate to fill the blank?", options:["bicker","bog","dither","dodge"], answer:0, explanation:" "},
   {qno:2, section:'GA', type:'mcq', marks:marksForQ(2), question:" Statements:<br>  1. All heroes are winners. <br>  2. All winners are lucky people.  <br>  Inferences: <br>  I. All lucky people are heroes.  <br>  II. Some lucky people are heroes.  <br>  III. Some winners are heroes.  <br>  Which of the above inferences can be logically deduced from statements 1 and 2?  ", options:[" Only I and II  "," Only II and III  "," Only I and III  "," Only III  "], answer:1, explanation:" "},
@@ -256,9 +312,9 @@ const QUESTIONS = [
   {qno:5, section:'GA', type:'mcq', marks:marksForQ(5), question:"The ratio of the number of girls to boys in class VIII is the same as the ratio of the number of boys to girls in class IX. The total number of students (boys and girls) in classes VIII and IX is 450 and 360, respectively. If the number of girls in classes VIII and IX is the same, then the number of girls in each class is", options:["150","200","250","175"], answer:1, explanation:" "},
   {qno:6, section:'GA', type:'mcq', marks:marksForQ(6), question:"The line ran _______ the page, right through the centre, and divided the page into two.", options:["across","of","between","about"], answer:0, explanation:" "},
   {qno:7, section:'GA', type:'mcq', marks:marksForQ(7), question:"Kind : ________ : : Often : Seldom (By word meaning)", options:["Cruel","Variety","Type","Kindred"], answer:0, explanation:" "},
-  {qno:8, section:'GA', type:'mcq', marks:marksForQ(8), question:'In how many ways can cells in a 3×3 grid be shaded, such that each row and each column have exactly one shaded cell? An example of one valid shading is shown. <br> <img src="https://raw.githubusercontent.com/indiancoalchronicles/GA1/refs/heads/main/q4.png"       alt="Longitudinal section of mined-out stope block"       style="max-width:100px; height:auto; border:1px solid rgba(255,255,255,0.2); border-radius:8px; display:block; margin:10px auto;">', options:["2","9","3","6"], answer:3, explanation:" "},
+  {qno:8, section:'GA', type:'mcq', marks:marksForQ(8), question:'In how many ways can cells in a 3×3 grid be shaded, such that each row and each column have exactly one shaded cell? An example of one valid shading is shown. <br> <img src="https://raw.githubusercontent.com/indiancoalchronicles/GA1/refs/heads/main/q4.png"       alt="Longitudinal section of mined-out stope block"       style="max-width:100px; height:auto;  border-radius:8px; display:block; margin:10px auto;">', options:["2","9","3","6"], answer:3, explanation:" "},
   {qno:9, section:'GA', type:'mcq', marks:marksForQ(9), question:"There are 4 red, 5 green, and 6 blue balls inside a box. If 𝑁 number of balls are picked simultaneously, what is the smallest value of 𝑁 that guarantees there will be at least two balls of the same colour? One cannot see the colour of the balls until they are picked.", options:["4","15","5","2"], answer:0, explanation:" "},
-  {qno:10, section:'GA', type:'mcq', marks:marksForQ(10), question:'Consider a circle with its centre at the origin (O), as shown. Two operations are allowed on the circle. <br>Operation 1 : Scale independently along the x and y axes. <br>Operation 2 : Rotation in any direction about the origin. <br>Which figure among the options can be achieved through a combination of these two operations on the given circle? <br> <img src=" https://raw.githubusercontent.com/indiancoalchronicles/GA1/refs/heads/main/q5-1.png"       alt="Longitudinal section of mined-out stope block"       style="max-width:100px; height:auto; border:1px solid rgba(255,255,255,0.2); border-radius:8px; display:block; margin:10px auto;">', options:[ '<br> <img src=" https://raw.githubusercontent.com/indiancoalchronicles/GA1/refs/heads/main/q5-2.png"       alt="Longitudinal section of mined-out stope block"       style="max-width:100px; height:auto; border:1px solid rgba(255,255,255,0.2); border-radius:8px; display:block; margin:10px auto;">','<br> <img src="https://raw.githubusercontent.com/indiancoalchronicles/GA1/refs/heads/main/q5-3.png"       alt="Longitudinal section of mined-out stope block"       style="max-width:100px; height:auto; border:1px solid rgba(255,255,255,0.2); border-radius:8px; display:block; margin:10px auto;">','<br> <img src="https://raw.githubusercontent.com/indiancoalchronicles/GA1/refs/heads/main/q5-4.png"       alt="Longitudinal section of mined-out stope block"       style="max-width:100px; height:auto; border:1px solid rgba(255,255,255,0.2); border-radius:8px; display:block; margin:10px auto;">','<br> <img src="https://raw.githubusercontent.com/indiancoalchronicles/GA1/refs/heads/main/q5-5.png"       alt="Longitudinal section of mined-out stope block"       style="max-width:100px; height:auto; border:1px solid rgba(255,255,255,0.2); border-radius:8px; display:block; margin:10px auto;">'], answer:0, explanation:" "},
+  {qno:10, section:'GA', type:'mcq', marks:marksForQ(10), question:'Consider a circle with its centre at the origin (O), as shown. Two operations are allowed on the circle. <br>Operation 1 : Scale independently along the x and y axes. <br>Operation 2 : Rotation in any direction about the origin. <br>Which figure among the options can be achieved through a combination of these two operations on the given circle? <br> <img src=" https://raw.githubusercontent.com/indiancoalchronicles/GA1/refs/heads/main/q5-1.png"       alt="Longitudinal section of mined-out stope block"       style="max-width:100px; height:auto;  border-radius:8px; display:block; margin:10px auto;">', options:[ '<br> <img src=" https://raw.githubusercontent.com/indiancoalchronicles/GA1/refs/heads/main/q5-2.png"       alt="Longitudinal section of mined-out stope block"       style="max-width:100px; height:auto;  border-radius:8px; display:block; margin:10px auto;">','<br> <img src="https://raw.githubusercontent.com/indiancoalchronicles/GA1/refs/heads/main/q5-3.png"       alt="Longitudinal section of mined-out stope block"       style="max-width:100px; height:auto;  border-radius:8px; display:block; margin:10px auto;">','<br> <img src="https://raw.githubusercontent.com/indiancoalchronicles/GA1/refs/heads/main/q5-4.png"       alt="Longitudinal section of mined-out stope block"       style="max-width:100px; height:auto;  border-radius:8px; display:block; margin:10px auto;">','<br> <img src="https://raw.githubusercontent.com/indiancoalchronicles/GA1/refs/heads/main/q5-5.png"       alt="Longitudinal section of mined-out stope block"       style="max-width:100px; height:auto;  border-radius:8px; display:block; margin:10px auto;">'], answer:0, explanation:" "},
   {qno:11, section:'MN', type:'mcq', marks:marksForQ(11), question:"Exposure to loud impulsive noise may lead to", options:["Nystagmus","Siderosis","Tinnitus","Stannosis"], answer:2, explanation:" "},
   {qno:12, section:'MN', type:'mcq', marks:marksForQ(12), question:"In a self-contained closed-circuit breathing apparatus,", options:["the exhaled air is released outside the apparatus.","the exhaled air is wholly absorbed within the apparatus.","CO₂ is released outside the apparatus after separating from exhaled air.","CO₂ from exhaled air is absorbed with a chemical."], answer:3, explanation:" "},
   {qno:13, section:'MN', type:'mcq', marks:marksForQ(13), question:"A rectangular mine airway of 2.0 m width and 2.5 m height has a bend with deflection of π/4 radian. If the radius of curvature of the bend is 4.0 m, the shock factor of the bend is (round off to three decimals)", options:["0.014","0.024","0.051","0.071"], answer:0, explanation:" "},
@@ -268,34 +324,34 @@ const QUESTIONS = [
   {qno:17, section:'MN', type:'mcq', marks:marksForQ(17), question: "$$\\text{The value of }  \\lim_{x \\to 0} \\left( \\frac{n\\sin5x}{\\sin3x} \\right) \\text{ is:}$$",  options: [    "$$2n$$","$$\\frac{3n}{5}$$",  "$$\\frac{6n}{5}$$",    "$$\\frac{5n}{3}$$"  ],  answer: 3,  explanation: " "}, 
   {qno:18, section:'MN', type:'mcq', marks:marksForQ(18), question:"The spherical semivariogram model γ(h) is represented by the following expression, where h is the lag distance.\n\n$$\n\\gamma(h) = \n\\begin{cases}\nC_0, & h = 0, \\\\[6pt]\nC_0 + (C - C_0)\\left[1.5\\,\\frac{h}{a} - 0.5\\left(\\frac{h}{a}\\right)^3\\right], & 0 < h \\le a, \\\\[6pt]\nC, & h > a.\n\\end{cases}\n$$\n\n The parameters C₀, C and a are respectively known as", options: [    "nugget, range and sill",    "sill, nugget and range",    "sill, range and nugget",    "nugget, sill and range"  ],  answer: 3, explanation: " "},
   {qno:19, section:'MN', type:'mcq', marks:marksForQ(19), question:"In a M/M/1 system, the inter-arrival time of dumpers to a shovel follows exponential distribution with a mean arrival rate of 9 dumpers per hour. The service time of the shovel follows exponential distribution with a mean service rate of 12 dumpers per hour. The probability that exactly one dumper is available to the shovel is", options:["1/16","3/16","3/4","1/4"], answer:1, explanation:" "},
-  {qno:20, section:'MN', type:'mcq', marks:marksForQ(20), question: 'A project network with the sequence of five activities is shown. <br><img src=" https://raw.githubusercontent.com/indiancoalchronicles/mining1/refs/heads/main/3.jpg" alt="Longitudinal section of mined out stop block" style="max-width:450px; height:auto; border:1px solid rgba(255,255,255,0.2); border-radius:8px; display:block; margin:10px auto;"> The crashing costs of activities are <br>  <table border="1" cellspacing="0" cellpadding="6" style="border-collapse:collapse; width:480px; text-align:center; background:rgba(255,255,255,0.03); color:#fff; border:1px solid rgba(255,255,255,0.1);">    <thead style="background:rgba(255,255,255,0.08);">      <tr>        <th>Activity</th>        <th>Duration (week)</th>    <th>Crashing cost per week (lakh INR)</th>  </tr>    </thead>    <tbody>      <tr><td>A</td><td>5</td><td>4.0</td></tr>      <tr><td>B</td><td>6</td><td>2.5</td></tr>   <tr><td>C</td><td>8</td><td>2.0</td></tr><tr><td>D</td><td>3</td><td>3.0</td></tr><tr><td>E</td><td>4</td><td>4.0</td></tr> </tbody>  </table>  <br>  If the project is crashed by one week, the increase in project cost, in lakh INR, is', options:["2.0","2.5","3.0","4.0"], answer:1, explanation:" "},
-  {qno:21, section:'MN', type:'mcq', marks:marksForQ(21), question: 'Match the following features with the corresponding symbols: <br><br>  <table border="1" cellspacing="0" cellpadding="6" style="border-collapse:collapse; width:600px; text-align:center; background:rgba(255,255,255,0.03); color:#fff; border:1px solid rgba(255,255,255,0.1);">    <thead style="background:rgba(255,255,255,0.08);">      <tr>        <th> </th>  <th>Feature in mine plan</th> <th> </th>       <th>Symbol</th>      </tr>    </thead>    <tbody>      <tr><td>P</td><td>Shaft</td><td>1</td><td><img src="https://raw.githubusercontent.com/indiancoalchronicles/mining1/refs/heads/main/4.jpg" alt="Longitudinal section of mined out stop block" style="max-width:100px; height:auto; border:1px solid rgba(255,255,255,0.2); border-radius:8px; display:block; margin:10px auto;"></td></tr>     <tr><td>Q</td><td>Staple Shaft</td><td>2</td><td><img src="https://raw.githubusercontent.com/indiancoalchronicles/mining1/refs/heads/main/5.jpg" alt="Longitudinal section of mined out stop block" style="max-width:100px; height:auto; border:1px solid rgba(255,255,255,0.2); border-radius:8px; display:block; margin:10px auto;"></td></tr><tr><td>R</td><td>Abandoned Shaft</td><td>3</td><td><img src="https://raw.githubusercontent.com/indiancoalchronicles/mining1/refs/heads/main/6.jpg" alt="Longitudinal section of mined out stop block" style="max-width:100px; height:auto; border:1px solid rgba(255,255,255,0.2); border-radius:8px; display:block; margin:10px auto;"></td></tr><tr><td>S</td><td>Abandoned Staple Shaft</td><td>4</td><td><img src="https://raw.githubusercontent.com/indiancoalchronicles/mining1/refs/heads/main/7.jpg" alt="Longitudinal section of mined out stop block" style="max-width:100px; height:auto; border:1px solid rgba(255,255,255,0.2); border-radius:8px; display:block; margin:10px auto;"></td></tr> </tbody>  </table>  ', options:["P→1; Q→3; R→4; S→2","P→4; Q→2; R→1; S→3","P→2; Q→4; R→3; S→1","P→4; Q→1; R→2; S→3"], answer:3, explanation:" "},
+  {qno:20, section:'MN', type:'mcq', marks:marksForQ(20), question: 'A project network with the sequence of five activities is shown. <br><img src=" https://raw.githubusercontent.com/indiancoalchronicles/mining1/refs/heads/main/3.jpg" alt="Longitudinal section of mined out stop block" style="max-width:450px; height:auto;  border-radius:8px; display:block; margin:10px auto;"> The crashing costs of activities are <br>  <table border="1" cellspacing="0" cellpadding="6" style="border-collapse:collapse; width:480px; text-align:center; background:rgba(255,255,255,0.03); color:#fff; border:1px solid rgba(255,255,255,0.1);">    <thead style="background:rgba(255,255,255,0.08);">      <tr>        <th>Activity</th>        <th>Duration (week)</th>    <th>Crashing cost per week (lakh INR)</th>  </tr>    </thead>    <tbody>      <tr><td>A</td><td>5</td><td>4.0</td></tr>      <tr><td>B</td><td>6</td><td>2.5</td></tr>   <tr><td>C</td><td>8</td><td>2.0</td></tr><tr><td>D</td><td>3</td><td>3.0</td></tr><tr><td>E</td><td>4</td><td>4.0</td></tr> </tbody>  </table>  <br>  If the project is crashed by one week, the increase in project cost, in lakh INR, is', options:["2.0","2.5","3.0","4.0"], answer:1, explanation:" "},
+  {qno:21, section:'MN', type:'mcq', marks:marksForQ(21), question: 'Match the following features with the corresponding symbols: <br><br>  <table border="1" cellspacing="0" cellpadding="6" style="border-collapse:collapse; width:600px; text-align:center; background:rgba(255,255,255,0.03); color:#fff; border:1px solid rgba(255,255,255,0.1);">    <thead style="background:rgba(255,255,255,0.08);">      <tr>        <th> </th>  <th>Feature in mine plan</th> <th> </th>       <th>Symbol</th>      </tr>    </thead>    <tbody>      <tr><td>P</td><td>Shaft</td><td>1</td><td><img src="https://raw.githubusercontent.com/indiancoalchronicles/mining1/refs/heads/main/4.jpg" alt="Longitudinal section of mined out stop block" style="max-width:100px; height:auto;  border-radius:8px; display:block; margin:10px auto;"></td></tr>     <tr><td>Q</td><td>Staple Shaft</td><td>2</td><td><img src="https://raw.githubusercontent.com/indiancoalchronicles/mining1/refs/heads/main/5.jpg" alt="Longitudinal section of mined out stop block" style="max-width:100px; height:auto;  border-radius:8px; display:block; margin:10px auto;"></td></tr><tr><td>R</td><td>Abandoned Shaft</td><td>3</td><td><img src="https://raw.githubusercontent.com/indiancoalchronicles/mining1/refs/heads/main/6.jpg" alt="Longitudinal section of mined out stop block" style="max-width:100px; height:auto;  border-radius:8px; display:block; margin:10px auto;"></td></tr><tr><td>S</td><td>Abandoned Staple Shaft</td><td>4</td><td><img src="https://raw.githubusercontent.com/indiancoalchronicles/mining1/refs/heads/main/7.jpg" alt="Longitudinal section of mined out stop block" style="max-width:100px; height:auto;  border-radius:8px; display:block; margin:10px auto;"></td></tr> </tbody>  </table>  ', options:["P→1; Q→3; R→4; S→2","P→4; Q→2; R→1; S→3","P→2; Q→4; R→3; S→1","P→4; Q→1; R→2; S→3"], answer:3, explanation:" "},
   {qno:22, section:'MN', type:'mcq', marks:marksForQ(22), question:"If the major (σ₁) and minor (σ₃) principal stresses for a rock element have a relationship σ₃ = −(1/2)σ₁, the maximum shear stress is expressed by", options:["4/3 σ₁","3/4 σ₁","1/2 σ₁","1/4 σ₁"], answer:1, explanation:" "},
   {qno:23, section:'MN', type:'mcq', marks:marksForQ(23), question:"The ore that is NOT used for commercial extraction of metal is", options:["Wolframite","Dolomite","Cassiterite","Uraninite"], answer:1, explanation:" "},
   {qno:24, section:'MN', subtype:'Mine Economics', type:'mcq', marks:marksForQ(24), question:"The function of District Mineral Foundation established by state governments in India, is to?", options:[" Act as an environmental regulatory body "," Approve mining plan "," Monitor welfare of mining affected people "," Look after safety aspects of mining operations "], answer:2, explanation:" DGMS - Look after safety aspects of mining operations <br> IBM/CMPDI - Approve mining plan <br> MoEFCC, NGT - Act as an environmental regulatory body"},
-  {qno:25, section: 'MN', subtype: "Mine Economics",  type: "mcq",  marks: marksForQ(25),  question: `The percentage Fe and corresponding net value for an iron ore mine is given below.   Assuming net value versus grade curve to be a straight line, and mining cost of waste is INR 1000/m³:  <br><br>  <table border="1" cellspacing="0" cellpadding="6" style="border-collapse:collapse; width:480px; text-align:center; background:rgba(255,255,255,0.03); color:#fff; border:1px solid rgba(255,255,255,0.1);">    <thead style="background:rgba(255,255,255,0.08);">      <tr>        <th>Fe (%)</th>        <th>Net value (INR per tonne)</th>      </tr>    </thead>    <tbody>      <tr><td>58</td><td>4000</td></tr>      <tr><td>62</td><td>4500</td></tr>    </tbody>  </table>  <br>  The correct representation of stripping ratio, SR (m³/tonne) versus Fe (%) grade is?`,  options: [    "SR = 3250 + 125 × Fe",    "SR = -3250 + 125 × Fe",    "SR = -3.250 + 0.125 × Fe",    "SR = 3.250 + 125 × Fe"  ],  answer: 2,  explanation: `  <br><br>  <img src="https://img1.wsimg.com/isteam/ip/0bf70def-deca-417e-962f-b76f39b1865e/Mining%20question%2019.jpg"       alt="Longitudinal section of mined-out stope block"       style="max-width:290px; height:auto; border:1px solid rgba(255,255,255,0.2); border-radius:8px; display:block; margin:10px auto;">  Using the straight-line relation:  <br>  (y - y₁) / (x - x₁) = (y₂ - y₁) / (x₂ - x₁)  <br>  (y - 4000) / (x - 58) = 500 / 4  <br>  ⇒ Net Value (NV) = 125Fe - 3250  <br>  Stripping Ratio (S.R.) = (Net Value of ore) / (Cost of waste)  <br>  = (125Fe - 3250) / 1000 = 0.125Fe - 3.250  `},
+  {qno:25, section: 'MN', subtype: "Mine Economics",  type: "mcq",  marks: marksForQ(25),  question: `The percentage Fe and corresponding net value for an iron ore mine is given below.   Assuming net value versus grade curve to be a straight line, and mining cost of waste is INR 1000/m³:  <br><br>  <table border="1" cellspacing="0" cellpadding="6" style="border-collapse:collapse; width:480px; text-align:center; background:rgba(255,255,255,0.03); color:#fff; border:1px solid rgba(255,255,255,0.1);">    <thead style="background:rgba(255,255,255,0.08);">      <tr>        <th>Fe (%)</th>        <th>Net value (INR per tonne)</th>      </tr>    </thead>    <tbody>      <tr><td>58</td><td>4000</td></tr>      <tr><td>62</td><td>4500</td></tr>    </tbody>  </table>  <br>  The correct representation of stripping ratio, SR (m³/tonne) versus Fe (%) grade is?`,  options: [    "SR = 3250 + 125 × Fe",    "SR = -3250 + 125 × Fe",    "SR = -3.250 + 0.125 × Fe",    "SR = 3.250 + 125 × Fe"  ],  answer: 2,  explanation: `  <br><br>  <img src="https://img1.wsimg.com/isteam/ip/0bf70def-deca-417e-962f-b76f39b1865e/Mining%20question%2019.jpg"       alt="Longitudinal section of mined-out stope block"       style="max-width:290px; height:auto;  border-radius:8px; display:block; margin:10px auto;">  Using the straight-line relation:  <br>  (y - y₁) / (x - x₁) = (y₂ - y₁) / (x₂ - x₁)  <br>  (y - 4000) / (x - 58) = 500 / 4  <br>  ⇒ Net Value (NV) = 125Fe - 3250  <br>  Stripping Ratio (S.R.) = (Net Value of ore) / (Cost of waste)  <br>  = (125Fe - 3250) / 1000 = 0.125Fe - 3.250  `},
   {qno:26, section:'MN', type:'mcq', marks:marksForQ(26), question:"The magnitude of the curl of the vector F = 2x i + 3y j + 4z k is", options:["0","4","9","25"], answer:0, explanation:" "},
   {qno:27, section:'MN', type:'nat', marks:marksForQ(27), question:"An explosive with a density of 1.2 g/cm³ has a heat of explosion equal to 900 cal/g. If the heat of explosion of ANFO with density of 0.8 g/cm³ is 950 cal/g, the bulk strength of the explosive relative to ANFO is ____ (round off to 2 decimals).", answerNum:1.43, explanation:" "},
-  {qno:28, section:'MN', type:'nat', marks:marksForQ(28), question: 'A typical 24-hour activity of a mobile crusher plant is shown. The utilization, in %, of the plant is ______ (round off up to 2 decimals). <br><br><img src="https://raw.githubusercontent.com/indiancoalchronicles/mining1/refs/heads/main/2.jpg" alt="Longitudinal section of mined out stop block" style="max-width:450px; height:auto; border:1px solid rgba(255,255,255,0.2); border-radius:8px; display:block; margin:10px auto;"> ', answerNum: 85.50, explanation:" "},
+  {qno:28, section:'MN', type:'nat', marks:marksForQ(28), question: 'A typical 24-hour activity of a mobile crusher plant is shown. The utilization, in %, of the plant is ______ (round off up to 2 decimals). <br><br><img src="https://raw.githubusercontent.com/indiancoalchronicles/mining1/refs/heads/main/2.jpg" alt="Longitudinal section of mined out stop block" style="max-width:450px; height:auto;  border-radius:8px; display:block; margin:10px auto;"> ', answerNum: 85.50, explanation:" "},
   {qno:29, section:'MN', type:'nat', marks:marksForQ(29), question:"A coal washery discharges 300 m³/day of contaminated water into a stream flowing at 0.04 m³/s. DO levels: stream = 8.5 mg/L, contaminated water = 4 mg/L. Neglecting temperature effect, the resultant DO, in mg/L, just after mixing is ______ (round off up to 2 decimals).", answerNum:8.15, explanation:" "},
   {qno:30, section:'MN', type:'nat', marks:marksForQ(30), question:"The combined sound pressure level at a point is 95 dB(A) (dumper + shovel). Shovel alone has 90 dB(A). The dumper alone level, in dB(A), is ______ (round off up to 2 decimals).", answerNum:93.50, explanation:" "},
   {qno:31, section:'MN', type:'nat', marks:marksForQ(31), question:"The void ratio of an unconsolidated soil heap of volume 1000 m³ is 1.0. If the soil heap is consolidated to 800 m³, the corresponding void ratio is ______ (round to 2 decimals).", answerNum:0.60, explanation:" "},
   {qno:32, section:'MN', type:'nat', marks:marksForQ(32), question:"For a circular path of radius 300 m, the super elevation is restricted to 0.1 m for a width of 1.6 m. The maximum speed, in m/s, of a vehicle to avoid overturn is ______ (round to 2 decimals).", answerNum:13.5, explanation:" "},
-  {qno:33, section:'MN', type:'nat', marks:marksForQ(33), question:'A scanline survey between points A and B is shown.<br>RQD = 100 × (0.1λ + 1) × exp(−0.1λ). <br>where, λ is the frequency of discontinuity per m. The RQD of the rock mass is ______ (round to 2 decimals). <br><br><img src=" https://raw.githubusercontent.com/indiancoalchronicles/mining1/refs/heads/main/1.jpg" alt="Longitudinal section of mined out stop block" style="max-width:450px; height:auto; border:1px solid rgba(255,255,255,0.2); border-radius:8px; display:block; margin:10px auto;"> ', answerNum:86, explanation:" "},
+  {qno:33, section:'MN', type:'nat', marks:marksForQ(33), question:'A scanline survey between points A and B is shown.<br>RQD = 100 × (0.1λ + 1) × exp(−0.1λ). <br>where, λ is the frequency of discontinuity per m. The RQD of the rock mass is ______ (round to 2 decimals). <br><br><img src=" https://raw.githubusercontent.com/indiancoalchronicles/mining1/refs/heads/main/1.jpg" alt="Longitudinal section of mined out stop block" style="max-width:450px; height:auto;  border-radius:8px; display:block; margin:10px auto;"> ', answerNum:86, explanation:" "},
   {qno:34, section:'MN', type:'nat', marks:marksForQ(34), question:"In a VCR stope, blast holes of 165 mm diameter are drilled. For the blast hole to behave as a spherical charge, the maximum charge length, in m, is ______ (round to 2 decimals).", answerNum:0.99, explanation:" "},
   {qno:35, section:'MN', type:'nat', marks:marksForQ(35), question:"A rectangular development heading of 3 m × 2.8 m is to be blasted with holes of 2.4 m length. Pull factor = 0.95, swell factor = 1.20. The volume of blasted rock per round, in m³, is ______ (round to 2 decimals).", answerNum:22.98, explanation:" "},
   {qno:36, section:'MN', type:'mcq', marks:marksForQ(36), question:'Data from two production faces of an open pit iron ore mine are given. <br><br>  <table border="1" cellspacing="0" cellpadding="6" style="border-collapse:collapse; width:480px; text-align:center; background:rgba(255,255,255,0.03); color:#fff; border:1px solid rgba(255,255,255,0.1);">    <thead style="background:rgba(255,255,255,0.08);">      <tr>        <th>Item description</th> <th>Maximum production capacity (tonne/day)</th><th>Fe (%)</th>       <th>Production cost of ores(in INR/tonne)</th>      </tr>    </thead>    <tbody>      <tr><td>Face 1</td><td>1600</td><td>63</td><td>1500</td></tr>      <tr><td>Face 2</td><td>2000</td><td>58</td><td>1200</td></tr>    </tbody>  </table>  <br><br>Ores from two different faces are blended and supplied with Fe grade not less than 60%. Based on the demand, the combined production is limited to a maximum of 2500 tonne/day. If the selling price of blended iron ores is INR 4500/tonne, the optimal production from two faces in tonne/day, for maximizing the profit, respectively, are', options:["1000.0 and 1500.0","1333.3 and 1166.7","1600.0 and 900.0","500.0 and 2000.0"], answer:0, explanation:" "},
-  {qno:37, section:'MN', type:'mcq', marks:marksForQ(37), question:"$$\\text{ Four identical districts ventilated with Q=3500 }m^{3}/min \\text{ at fan drift pressure of 1.15 kPa.}$$ $$\\text {When one of the districts is sealed off, the change in resultant is } 0.072 Ns^{2} m^{-8}.$$  $$\\text { If the fan is stopped, keeping a district sealed, the quantity through the mine becomes }  850 m^{3}/min.$$ $$\\text {The natural ventilation pressure in Pa is}$$", options:["72.12","82.28","105.56","144.56"], answer:1, explanation:" "},
+  {qno:37, section:'MN', type:'mcq', marks:marksForQ(37), question:"Four identical districts ventilated with Q=3500\\(m^{3}/min\\)  at fan drift pressure of 1.15 kPa. When one of the districts is sealed off, the change in resultant is 0.072\\(Ns^{2}m^{-8}\\). If the fan is stopped, keeping a district sealed, the quantity through the mine becomes 850\\(m^{3}/min\\). The natural ventilation pressure in Pa is",options:["72.12","82.28","105.56","144.56"], answer:1, explanation:" "},
   {qno:38, section: "MN", type: "mcq", marks: marksForQ(38),question: "$$\\text{ Given, Matrix } A = \\begin{bmatrix}1 & 4 & 3 \\\\ 5 & 2 & 1 \\\\ 6 & 4 & 3\\end{bmatrix}, \\quad B = A - A^{T}, \\text{ then } B \\text{ is}$$",options: [    "symmetric",    "skew symmetric", "diagonal",    "scalar"  ], answer: 1, explanation: " "},
   {qno:39, section:'MN', type:'mcq', marks:marksForQ(39), question:'The roof convergence data for 30 days at a monitoring station in a coal mine gallery is given. <br><br>  <table border="1" cellspacing="0" cellpadding="6" style="border-collapse:collapse; width:480px; text-align:center; background:rgba(255,255,255,0.03); color:#fff; border:1px solid rgba(255,255,255,0.1);">    <thead style="background:rgba(255,255,255,0.08);">      <tr>        <th>Day</th> <th>Convergence reading (mm)</th>     </tr>    </thead>    <tbody>      <tr><td>0</td><td>0</td></tr>      <tr><td>5</td><td>4.7</td></tr>      <tr><td>10</td><td>11.3</td></tr>      <tr><td>16</td><td>19.6</td></tr>      <tr><td>22</td><td>28.8</td></tr>      <tr><td>30</td><td>34.8</td></tr>          </tbody>  </table>  <br>The management decides on a Trigger Action Response Plan (TARP) if the following two premises occur simultaneously.<br><br> Premise 1: Rate of convergence exceeds 1.5 mm/day between two consecutive measurements.<br>Premise 2: Rate of cumulative increase in convergence exceeds 1.0 mm/day.<br><br>Identify the day on which TARP is enforced in that gallery.', options:["10","16","22","30"], answer:2, explanation:" "},
   {qno:40, section:'MEM', subtype:'Stoping', type:'mcq', marks:marksForQ(40), question:"Magnitude of error in the determination of the integral, <em>I</em> using Simpson's 1/3 rule, taking step length as 1.0 is $$ I = \\int_1^3 (x^3 + 6)\\,dx $$", options:["0","1","1.5","2.0"], answer:0, explanation:"Because Simpson's 1/3 (with these sample points) gives the exact integral for a cubic, error is 0. Notice the <em>I</em> is italic."},
   {qno:41, section:'MN', type:'mcq', marks:marksForQ(41), question:'In closed traverse, ABC, the bearings of two lines AB and BC are given. <br><br>  <table border="1" cellspacing="0" cellpadding="6" style="border-collapse:collapse; width:480px; text-align:center; background:rgba(255,255,255,0.03); color:#fff; border:1px solid rgba(255,255,255,0.1);">    <thead style="background:rgba(255,255,255,0.08);">      <tr>        <th>Line</th> <th>Length (m)</th><th>Bearing</th>          </tr>    </thead>    <tbody>      <tr><td>AB</td><td>100</td><td>90°</td></tr>      <tr><td>BC</td><td>120</td><td>150°</td></tr>          </tbody>  </table>  <br><br>The length (m) and bearing (°) of line CA, respectively, are', options:["190.7 and 303°","190.7 and 240°","160.3 and 240°","160.3 and 303°"], answer:0, explanation:" "},
   {qno:42, section:'MN', type:'mcq', marks:marksForQ(42), question:'Match method of mining with orebody geometry, orebody strength and type of support <br><br>  <table border="1" cellspacing="0" cellpadding="6" style="border-collapse:collapse; width:480px; text-align:center; background:rgba(255,255,255,0.03); color:#fff; border:1px solid rgba(255,255,255,0.1);">    <thead style="background:rgba(255,255,255,0.08);">      <tr>        <th>Geometry</th> <th>Strength</th><th>Support</th>  <th>Method</th>        </tr>    </thead>    <tbody>      <tr><td> P: Tabular & Moderately Steep </td><td> L: Strong </td><td> X: Unsupported </td><td>1. Cut and Fill </td></tr>      <tr><td> Q: Tabular & Flat </td><td> M: Moderate </td><td> Y: Artificially Supported </td><td>2. Block Caving </td></tr> <tr><td> R: Massive and Steep </td><td> N: Weak </td><td> Z: Self-supported </td><td>3. Room and Pillar </td></tr>          </tbody>  </table> ', options:["P→L→Y→3; Q→N→Z→1; R→M→X→2","P→M→Y→2; Q→N→Z→1; R→L→X→3","P→L→Y→2; Q→M→Z→3; R→N→X→1","P→M→Y→1; Q→L→Z→3; R→N→X→2"], answer:3, explanation:" "},
   {qno:43, section:'MN', type:'mcq', marks:marksForQ(43), question:'Vectors a = 4i + 3j - 2k and b = 3i + 2j + 4k represent two adjacent sides of a triangle. The magnitude of the area of the triangle and the unit vector perpendicular to both a and b respectively, are', options:["28.93 and 0.58i - 0.76j - 0.27k","28.93 and 17.0i - 22.0j - 8.0k","14.46 and 0.58i - 0.76j - 0.27k","14.46 and 17.0i - 22.0j - 8.0k"], answer:2, explanation:" "},
-  {qno:44, section:'MN', type:'nat', marks:marksForQ(44), question:'Water is pumped from a mine sump at 300 m³/hr into an inverted conical tank. The rate of rise in water level (m/min) when water level is 5 m high is ______ (round to 2 decimals). <br><br><img src="https://raw.githubusercontent.com/indiancoalchronicles/mining1/refs/heads/main/2024.44.jpeg" alt="Longitudinal section of mined out stop block" style="max-width:290px; height:auto; border:1px solid rgba(255,255,255,0.2); border-radius:8px; display:block; margin:10px auto;">', answerNum:0.55, explanation:" "},
+  {qno:44, section:'MN', type:'nat', marks:marksForQ(44), question:'Water is pumped from a mine sump at 300 m³/hr into an inverted conical tank. The rate of rise in water level (m/min) when water level is 5 m high is ______ (round to 2 decimals). <br><br><img src="https://raw.githubusercontent.com/indiancoalchronicles/mining1/refs/heads/main/2024.44.jpeg" alt="Longitudinal section of mined out stop block" style="max-width:290px; height:auto;  border-radius:8px; display:block; margin:10px auto;">', answerNum:0.55, explanation:" "},
   {qno:45, section:'MN', type:'nat', marks:marksForQ(45), question:"A thermal power plant has an agreement with three mines M1, M2 and M3 to receive ‘Grade 1’ coal, in the proportion of 60%, 25% and 15%, respectively. The Probabilities that a wagon supplied coal to the plant containing below ‘Grade 1’ from mines M1, M2 and M3 are 0.02, 0.03 and 0.04, respectively. On a random check, a sample wagon is found to carry below ‘Grade 1’ coal. The probability that the wagon belongs to mine M1, is ______ (round to 2 decimals).", answerNum:0.47, explanation:" "},
-  {qno:46, section:'MN', type:'nat', marks:marksForQ(46), question: 'A transportation system for carrying ore from stock pile to railway siding through an ore bin is shown. The time between failure of each conveyor belt follows an exponential distribution with mean time between failure of 700 hours. The system is considered to be a ‘success’ if ore transports from stock pile to siding by any combination of belts. The reliability of the system for 350 hours of continuous successful operation, is ______ (round to 2 decimals). <br><br><img src="https://raw.githubusercontent.com/indiancoalchronicles/mining1/refs/heads/main/2024.46.jpeg" alt="Longitudinal section of mined out stop block" style="max-width:500px; height:auto; border:1px solid rgba(255,255,255,0.2); border-radius:8px; display:block; margin:10px auto;">', answerNum:0.71, explanation:" "},
-  {qno:47, section:'MN', type:'nat', marks:marksForQ(47), question:" Polluted air with particulate matters of diameter 50 µm enter with a horizontal velocity 1.0 m/s at a height 0.5 m from the bottom of a dry settling chamber. The density of the particle is 2000 kg/ m³ and dynamic viscosity of the air is 1.8×10-5 kg/m-s. <br><br>Assume streamline flow and the density of air is negligible as compared to particles and uniform horizontal velocity of 1.0 m/s of gas and particles within the chamber. <br><br>Considering particle settling follows Stoke’s law, the minimum length in m, of the chamber required for settling of the particle at its bottom, is ______  ", answerNum:3.30, explanation:" "},
+  {qno:46, section:'MN', type:'nat', marks:marksForQ(46), question: 'A transportation system for carrying ore from stock pile to railway siding through an ore bin is shown. The time between failure of each conveyor belt follows an exponential distribution with mean time between failure of 700 hours. The system is considered to be a ‘success’ if ore transports from stock pile to siding by any combination of belts. The reliability of the system for 350 hours of continuous successful operation, is ______ (round to 2 decimals). <br><br><img src="https://raw.githubusercontent.com/indiancoalchronicles/mining1/refs/heads/main/2024.46.jpeg" alt="Longitudinal section of mined out stop block" style="max-width:500px; height:auto;  border-radius:8px; display:block; margin:10px auto;">', answerNum:0.71, explanation:" "},
+  {qno:47, section:'MN', type:'nat', marks:marksForQ(47), question:" Polluted air with particulate matters of diameter 50 µm enter with a horizontal velocity 1.0 m/s at a height 0.5 m from the bottom of a dry settling chamber. The density of the particle is 2000 kg/ m³ and dynamic viscosity of the air is \\(1.8\\text { x }10^{-5}\\frac{kg}{m.s}\\) <br><br>Assume streamline flow and the density of air is negligible as compared to particles and uniform horizontal velocity of 1.0 m/s of gas and particles within the chamber. <br><br>Considering particle settling follows Stoke’s law, the minimum length in m, of the chamber required for settling of the particle at its bottom, is ______  ", answerNum:3.30, explanation:" "},
   {qno:48, section:'MN', type:'nat', marks:marksForQ(48), question:'In a tacheometry survey, the readings observed are given.<br><br>  <table border="1" cellspacing="0" cellpadding="6" style="border-collapse:collapse; width:480px; text-align:center; background:rgba(255,255,255,0.03); color:#fff; border:1px solid rgba(255,255,255,0.1);">    <thead style="background:rgba(255,255,255,0.08);">      <tr>        <th>Instrument Station</th> <th>Staff Station</th><th>Bearing of line of sight</th> <th>Vertical angle</th>  <th>Staff readings (m)</th>        </tr>    </thead>    <tbody>      <tr><td> P</td><td> A </td><th>145°</th> <td> +8°</td><td>1.2, 1.7, 2.2</td></tr>      <tr><td> P </td><td> B </td><td> 205°</td><td> +3°</td><td>0.8, 1.2, 1.6</td></tr>    </tbody>  </table> <br><br>The additive and multiplying constants of the instrument are 0 and 100, respectively. The length of the line AB in m is ______ (round to 2 decimals).', answerNum:90.00, explanation:" "},
   {qno:49, section:'MN', type:'nat', marks:marksForQ(49), question: 'The data obtained from an air sample analysis of an old working in a coal mine are given: $$O_{2}\;17.15\\%,\\; CO_{2}\;3.40\\%,\\; CH_{4}\;2.20\\%,\\; N_{2}\;77.25\\%.$$ <br><br>Considering atmospheric air contains: $$O_{2}\;20.95\\%,\\; CO_{2}\;0.03\\%,\\; N_{2}\;79.02\\%,$$ the percentage of blackdamp in the old working is ______ (round to 2 decimals).', answerNum:16.00, explanation:" "},
   {qno:50, section:'MN', type:'nat', marks:marksForQ(50), question: "A rectangular face of 2.0 m × 2.5 m dimension is blasted with 20 kg explosive in a 1000 m long drive. One kilogram of explosive produces 2200 cm^{3} of nitrous fumes. The face is ventilated with a duct, located 10.0 m away from the face, to dilute the fumes. The quantity of air, in m^{3}/s to be circulated for reducing the concentration of nitrous fumes to 5 ppm within a period of 5 minutes, is ______ (round to 2 decimals). <br><br>[Use relation $$t = 2.303\\,\\frac{V_{m}}{Q}\\,\\left(\\log\\left[\\frac{q}{V_{m}c}\\right]\\right) + \\frac{V - V_{m}}{Q}$$ where t = time, 𝑉𝑚 = volume of the tunnel over which the mixing of the gases produced at the face, and air delivered by the fan occurs, 𝑐 = concentration at time, t, 𝑉 = volume of tunnel, 𝑄 = quantity of air flow, 𝑞 = total volume of nitrous fumes produced].", answerNum:17.20, explanation:" "},
@@ -303,20 +359,18 @@ const QUESTIONS = [
   {qno:52, section:'MN', type:'nat', marks:marksForQ(52), question: 'The root of the function $$f(x) = x^{3} - 2x^{2} + 3x - 1$$ in the interval [0, 1] using the bisection method after two iterations is ______ (round off to 2 decimals).', answerNum:0.37, explanation:" "},
   {qno:53, section:'MN', type:'nat', marks:marksForQ(53), question:" A Bord and Pillar panel is developed at a depth of 250 m in a flat coal seam. The vertical stress gradient is 0.027 MPa/m. If the strength of a square pillar is 12.5 MPa, the extraction ratio of the pillar for a safety factor of 1.5, is ______. (round off up to 2 decimals)", answerNum:0.19, explanation:" "},
   {qno:54, section:'MN', type:'nat', marks:marksForQ(54), question:" A Mohr-Coulomb envelop between shear stress, τ and normal stress, 𝜎<sub>n</sub> of a sandstone rock is given as $$τ = 7.5 + 0.84 σ_{n} \\text{ (unit of stresses is MPa) } $$ <br><br>  A sandstone sample is tested in triaxial mode with confining pressure of 5.0 MPa. The value of the shear stress, 𝜏 in MPa at the failure, is______. (round off up to 2 decimals)", answerNum:19.50, explanation:" "},
-  {qno:55, section:'MN', type:'nat', marks:marksForQ(55), question: 'A circular tunnel is constructed at a depth of 100 m. The average unit weight of overburden rock is 27.0 kN/m<sup>3</sup>. If the tangential stress measured at point A located at the horizontal boundary of the tunnel as shown, is 5.0 MPa, the tangential stress at point B in MPa, is______. (round off up to 2 decimals) <br><br><img src="https://raw.githubusercontent.com/indiancoalchronicles/mining1/refs/heads/main/2024.55.jpeg" alt="Longitudinal section of mined out stop block" style="max-width:300px; height:auto; border:1px solid rgba(255,255,255,0.2); border-radius:8px; display:block; margin:10px auto;">', answerNum:6.50, explanation:" "},
-  {qno:56, section:'MN', type:'nat', marks:marksForQ(56), question: 'A mine worker weighing (W) 600 N lifts an object of 100 N as shown. The 50% body weight is applied downward through point A and a force F<sub>E</sub>  is produced parallel to 𝑥 axis by the contraction of erector spinae muscle during lifting. The lumber disc, L (shown by red box) acts as a smooth hinge and keeps the upper body in static equilibrium. Ignore all other forces in the body. The magnitude of the resultant of the reaction forces, in N at the lumber disc, is ______. (round off up to 2 decimals) <br><br><img src="https://raw.githubusercontent.com/indiancoalchronicles/mining1/refs/heads/main/2024.56.jpeg" alt="Longitudinal section of mined out stop block" style="max-width:300px; height:auto; border:1px solid rgba(255,255,255,0.2); border-radius:8px; display:block; margin:10px auto;">', answerNum:2625.00, explanation:" "},
-  {qno:57, section:'MN', type:'nat', marks:marksForQ(57), question: ' A solid ball of mass 10 kg is subjected to forces as shown. The magnitude of the acceleration in m/s<sup>2</sup>  is ______ (round to 2 decimals). <br><br><img src="https://raw.githubusercontent.com/indiancoalchronicles/mining1/refs/heads/main/2024.57.jpg" alt="Longitudinal section of mined out stop block" style="max-width:300px; height:auto; border:1px solid rgba(255,255,255,0.2); border-radius:8px; display:block; margin:10px auto;">', answerNum:7.65, explanation:" "},
+  {qno:55, section:'MN', type:'nat', marks:marksForQ(55), question: 'A circular tunnel is constructed at a depth of 100 m. The average unit weight of overburden rock is 27.0 kN/m<sup>3</sup>. If the tangential stress measured at point A located at the horizontal boundary of the tunnel as shown, is 5.0 MPa, the tangential stress at point B in MPa, is______. (round off up to 2 decimals) <br><br><img src="https://raw.githubusercontent.com/indiancoalchronicles/mining1/refs/heads/main/2024.55.jpeg" alt="Longitudinal section of mined out stop block" style="max-width:300px; height:auto;  border-radius:8px; display:block; margin:10px auto;">', answerNum:6.50, explanation:" "},
+  {qno:56, section:'MN', type:'nat', marks:marksForQ(56), question: 'A mine worker weighing (W) 600 N lifts an object of 100 N as shown. The 50% body weight is applied downward through point A and a force F<sub>E</sub>  is produced parallel to 𝑥 axis by the contraction of erector spinae muscle during lifting. The lumber disc, L (shown by red box) acts as a smooth hinge and keeps the upper body in static equilibrium. Ignore all other forces in the body. The magnitude of the resultant of the reaction forces, in N at the lumber disc, is ______. (round off to 2 decimals) <br><br><img src="https://raw.githubusercontent.com/indiancoalchronicles/mining1/refs/heads/main/2024.56.jpeg" alt="Longitudinal section of mined out stop block" style="max-width:300px; height:auto;  border-radius:8px; display:block; margin:10px auto;">', answerNum:2625.00, explanation:" "},
+  {qno:57, section:'MN', type:'nat', marks:marksForQ(57), question: ' A solid ball of mass 10 kg is subjected to forces as shown. The magnitude of the acceleration in m/s<sup>2</sup>  is ______ (round to 2 decimals). <br><br><img src="https://raw.githubusercontent.com/indiancoalchronicles/mining1/refs/heads/main/2024.57.jpg" alt="Longitudinal section of mined out stop block" style="max-width:300px; height:auto;  border-radius:8px; display:block; margin:10px auto;">', answerNum:7.65, explanation:" "},
   {qno:58, section: 'MN', subtype:'Mine Planning',  type: 'nat',  marks:marksForQ(58),  question: "In an open pit mine, the mineral inventory, prices, costs and capacities are given.<br><br> <h3>Mineral Inventory</h3> <table border=\"1\" cellspacing=\"0\" cellpadding=\"6\" style=\"border-collapse:collapse; width:480px; text-align:center; background:rgba(255,255,255,0.03); color:#fff; border:1px solid rgba(255,255,255,0.1);\"> <thead style=\"background:rgba(255,255,255,0.08);\"> <tr><th>Grade Interval</th><th>Tonnage (in million tonne)</th></tr></thead> <tbody> <tr><td>0 &lt; Cu% ≤ 0.3</td><td>0</td></tr> <tr><td>0.3 &lt; Cu% ≤ 0.4</td><td>5</td></tr> <tr><td>0.4 &lt; Cu% ≤ 0.5</td><td>5</td></tr> <tr><td>0.5 &lt; Cu% ≤ 0.6</td><td>5</td></tr> <tr><td>0.6 &lt; Cu% ≤ 0.7</td><td>5</td></tr> <tr><td>0.7 &lt; Cu% ≤ 0.8</td><td>5</td></tr> <tr><td>0.8 ≤ Cu%</td><td>0</td></tr> </tbody> </table><br> Concentration Cost : 3200/tn of ore milled, <br> Smelting and Refinery Cost : 10000/tn of Copper metal, <br> Selling Price : 6,50,000/tonne Copper metal, <br> Overall Recovery : 100%, <br> Maximum Production Capacity : 5 million tonne/annum <br><br> The mine is operating at 5 million tonne per year. Considering mining capacity being the only constraint, Lane's algorithm (based on profit maximization) is used for determining mill cut-off grade. <br><br>The total amount of Copper produced in million tonne, in the life of the pit, is ________.",  answerNum: 97500,  explanation: "We know that Lane's algorithm gives: <br><br> $$g = \\frac{c}{y(s - r)}$$ <br> where: <br> \\( g \\) = mill cut-off grade <br> \\( c \\) = concentrating cost <br> \\( y \\) = recovery <br> \\( s \\) = selling price <br> \\( r \\) = refinery cost <br><br> $$g = \\frac{3200}{1(650000 - 10000)} = 0.005 = 0.5\\%$$ <br><br> Total tonnage of ore to be sent for milling as per cut-off grade of 0.5% = 15 million tonnes. <br><br> Average grade of Cu: <br> $$\\text{Average Grade} = \\frac{0.5 + 0.8}{2} = 0.65\\%$$ <br><br> Amount of Copper recovered (tonnes): <br> $$15 \\times 10^6 \\times \\frac{0.65}{100} \\times 1 = 97500 \\text{ tonnes}$$"},
-  {qno:59, section: 'MN', subtype: 'Mine Planning', type: 'nat', marks: marksForQ(59),  question: `A Longitudinal section of a mined out stope block in a copper mine is shown by the shaded portion. For a uniform thickness of the stop block,the percentage of ore recovery is ______.<br><br><img src="https://raw.githubusercontent.com/indiancoalchronicles/mining1/refs/heads/main/2024.59.jpeg" alt="Longitudinal section of mined out stop block" style="max-width:290px; height:auto; border:1px solid rgba(255,255,255,0.2); border-radius:8px; display:block; margin:10px auto;">  `,answerNum: 69.43,explanation: `Explanation: Shaded region volume —— $$19 \\,\\text{x}\\,1 \\,\\text{x}\\, 60 = 1140 m^3$$ <br>Volume of ore from stope = 1140 - 2 x (vol. of one side of rib)<br> Vol. of one side of rib = $$(8.25 \\,\\text{x}\\, 6.0) - (41.5 \\,\\text{x}\\, 6.25) – (π \\,\\text{x}\\, (6.25)^2 \\,\\text{x}\\, ½) = 174.26 m^3$$ <br>Ore recovery % = (1140 – 2 x (1740.26))/1140  x 100 = 69.43%`},
+  {qno:59, section: 'MN', subtype: 'Mine Planning', type: 'nat', marks: marksForQ(59),  question: `A Longitudinal section of a mined out stope block in a copper mine is shown by the shaded portion. For a uniform thickness of the stop block,the percentage of ore recovery is ______.<br><br><img src="https://raw.githubusercontent.com/indiancoalchronicles/mining1/refs/heads/main/2024.59.jpeg" alt="Longitudinal section of mined out stop block" style="max-width:290px; height:auto;  border-radius:8px; display:block; margin:10px auto;">  `,answerNum: 69.43,explanation: `Explanation: Shaded region volume —— $$19 \\,\\text{x}\\,1 \\,\\text{x}\\, 60 = 1140 m^3$$ <br>Volume of ore from stope = 1140 - 2 x (vol. of one side of rib)<br> Vol. of one side of rib = $$(8.25 \\,\\text{x}\\, 6.0) - (41.5 \\,\\text{x}\\, 6.25) – (π \\,\\text{x}\\, (6.25)^2 \\,\\text{x}\\, ½) = 174.26 m^3$$ <br>Ore recovery % = (1140 – 2 x (1740.26))/1140  x 100 = 69.43%`},
   {qno:60, section:'MN', type:'nat', marks:marksForQ(60), question:" The real rate of return from a mining project is 14%. If the inflation rate over the entire life of the mine is 5.5 %, then the nominal rate of return in %, is ______. (round off up to 2 decimals)", answerNum:20.27, explanation:" "},
   {qno:61, section:'MN', type:'nat', marks:marksForQ(61), question:'In an opencast coal mine, blast vibrations are measured at two locations, A and B simultaneously for a maximum charge per delay (Q) of 1200 kg as given. <br><br>  <table border="1" cellspacing="0" cellpadding="6" style="border-collapse:collapse; width:480px; text-align:center; background:rgba(255,255,255,0.03); color:#fff; border:1px solid rgba(255,255,255,0.1);">    <thead style="background:rgba(255,255,255,0.08);">      <tr>        <th>Location</th> <th>Distance from the blast face, D(m)</th><th>PPV (mm/s)</th></tr>    </thead>    <tbody>      <tr><td> A</td><td> 100 </td><td>112.5</td></tr>      <tr><td> B</td><td> 300 </td><td>20.3</td></tr>    </tbody>  </table> <br><br> Assume the relation $$ PPV = K [\\frac{ D }{√Q}]^{-β}$$  where, 𝐾 and 𝛽 are site constants. The PPV in mm/s, at a distance of 200 m from the blast face, is ______. (round off up to 2 decimals)', answerNum:38.00, explanation:" "},
-  {qno:62, section:'MN', type:'nat', marks:marksForQ(62), question:" A 35.0 kW motor transmits power to a pulley of 600 mm diameter, which rotates at 400 rpm to drive a flat belt. The tension in the tight side is 2.5 times of the slack side. Neglect all transmission losses. If the maximum allowable tension is 8.0 N per mm of belt width, then the minimum width of the belt in mm, is ______. (round off up to 2 decimals) ", answerNum:580.00, explanation:" "},
-  {qno:63, section:'MN', type:'nat', marks:marksForQ(63), question:'A 1.2 m diameter drum winding system is shown. <br><br><img src="https://raw.githubusercontent.com/indiancoalchronicles/mining1/refs/heads/main/2024.63.jpeg" alt="Longitudinal section of mined out stop block" style="max-width:500px; height:auto; border:1px solid rgba(255,255,255,0.2); border-radius:8px; display:block; margin:10px auto;"><br><br>Consider the following:<br>1) A new rope is recapped once at least in every 6 months and a length of 2 m including existing capping is to be cut off from the rope before recapping.<br> 2) The maximum life of a rope is 3.5 years and at least 2 rounds of rope should remain on the drum while the descending cage lands at the bottom most landing point.<br> 3) No overwinding will take place during the maximum life of the new rope<br><br> Neglecting the impact of fleet angle on the length of the rope, the minimum length, in m, of new winding rope is ______. (round off up to 2 decimals)',  answerNum:314.50, explanation:" "},
+  {qno:62, section:'MN', type:'nat', marks:marksForQ(62), question:" A 35.0 kW motor transmits power to a pulley of 600 mm diameter, which rotates at 400 rpm to drive a flat belt. The tension in the tight side is 2.5 times of the slack side. Neglect all transmission losses. If the maximum allowable tension is 8.0 N per mm of belt width, then the minimum width of the belt in mm, is ______. (round off to 2 decimals) ", answerNum:580.00, explanation:" "},
+  {qno:63, section:'MN', type:'nat', marks:marksForQ(63), question:'A 1.2 m diameter drum winding system is shown. <br><br><img src="https://raw.githubusercontent.com/indiancoalchronicles/mining1/refs/heads/main/2024.63.jpeg" alt="Longitudinal section of mined out stop block" style="max-width:500px; height:auto;  border-radius:8px; display:block; margin:10px auto;"><br><br>Consider the following:<br>1) A new rope is recapped once at least in every 6 months and a length of 2 m including existing capping is to be cut off from the rope before recapping.<br> 2) The maximum life of a rope is 3.5 years and at least 2 rounds of rope should remain on the drum while the descending cage lands at the bottom most landing point.<br> 3) No overwinding will take place during the maximum life of the new rope<br><br> Neglecting the impact of fleet angle on the length of the rope, the minimum length, in m, of new winding rope is ______. (round off up to 2 decimals)',  answerNum:314.50, explanation:" "},
   {qno:64, section:'MN', type:'nat', marks:marksForQ(64), question: 'For a continuous miner (CM) panel, the following data are given.<br><br>Data related to CM<br>  <table border="1" cellspacing="0" cellpadding="6" style="border-collapse:collapse; width:480px; text-align:center; background:rgba(255,255,255,0.03); color:#fff; border:1px solid rgba(255,255,255,0.1);">    <tbody>      <tr><td> Dimension of a working face</td><td> 5.0 m (width) x 3.0 m (height) </td></tr>      <tr><td> Web depth, m</td><td> 0.6 </td></tr><tr><td> Time for one web cut up to full height, min</td><td> 9 </td></tr></tbody>  </table> <br><br>Data related to shuttle car<br>  <table border="1" cellspacing="0" cellpadding="6" style="border-collapse:collapse; width:480px; text-align:center; background:rgba(255,255,255,0.03); color:#fff; border:1px solid rgba(255,255,255,0.1);">    <tbody>      <tr><td> Bucket capacity of shuttle car, tonne</td><td> 10 </td></tr>   <tr><td> Fill factor</td><td> 0.9 </td></tr><tr><td> Number of cars</td><td> 2 </td></tr>   <tr><td> Cycle time of each car including loading, travel and unloading, min</td><td> 6 </td></tr></tbody>  </table><br><br>Assume, unit weight of coal is 1.4 tonne/m<sup>3</sup> and its swell factor is 1.2. Consider, 6 working hours per shift. <br><br> The non-working time in min, in working hours per shuttle car to dispatch all coal cut by the CM, is ______. (round off up to 2 decimals)', answerNum:155.00, explanation:" "},
   {qno:65, section:'MN', type:'nat', marks:marksForQ(65), question:'In a development coal face, 12 holes are drilled and charged with explosive. Holes are initiated with electric delay detonators connected in series. The length of a detonator lead wire is 1.5 m. The length of the blasting cable is 120 m. <br><br>Data are as given<br>  <table border="1" cellspacing="0" cellpadding="6" style="border-collapse:collapse; width:480px; text-align:center; background:rgba(255,255,255,0.03); color:#fff; border:1px solid rgba(255,255,255,0.1);">    <tbody>      <tr><td> Resistance of each detonator</td><td> 1.48 Ω </td></tr>   <tr><td> Resistance of lead wire</td><td> 0.04 Ω/m</td></tr><tr><td> Resistance of one wire of the blasting cable</td><td> 0.009 Ω/m </td></tr>   </tbody>  </table><br><br>The total resistance of the circuit in Ω, is ______. (round off up to 2 decimals)', answerNum:21.35, explanation:" "}    
-  
-];
-
+  ];
 
 /* --------------------------
    STATE
@@ -328,7 +382,7 @@ let state = {
   currentIndex: 0,
   answers: new Array(QUESTIONS.length).fill(null),
   review: new Array(QUESTIONS.length).fill(false),
-  visited: new Array(QUESTIONS.length).fill(false), // track visits
+  visited: new Array(QUESTIONS.length).fill(false),
   submitted: false
 };
 
@@ -345,7 +399,7 @@ const timerEl = document.getElementById('timer');
 const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
 const clearBtn = document.getElementById('clearBtn');
-const saveMarkBtn = document.getElementById('saveMarkBtn');
+// save & mark button removed
 const reviewNextBtn = document.getElementById('reviewNextBtn');
 const qmarksEl = document.getElementById('qmarks');
 const paletteEl = document.getElementById('palette');
@@ -360,6 +414,7 @@ const countAnsweredEl = document.getElementById('count-answered');
 const countNotAnsweredEl = document.getElementById('count-not-answered');
 const countNotVisitedEl = document.getElementById('count-not-visited');
 const countReviewEl = document.getElementById('count-review');
+
 
 /* --------------------------
    TIMER UTIL
@@ -388,7 +443,6 @@ function startTimer(){
 --------------------------- */
 
 function buildPalette(){
-  // Build buttons initially with not-visited state
   paletteEl.innerHTML = "";
   QUESTIONS.forEach((q,i) => {
     const btn = document.createElement('button');
@@ -396,68 +450,41 @@ function buildPalette(){
     btn.className = 'pmini';
     btn.dataset.index = i;
     btn.textContent = i+1;
-    // initial: not-visited
-    btn.classList.remove('answered','not-answered','review','active');
-    btn.style.background = ''; // allow CSS default
     btn.addEventListener('click', ()=> {
       saveAnswer();
       gotoQuestion(i);
     });
     paletteEl.appendChild(btn);
   });
-  updatePaletteState(); // enforce classes based on state
+  updatePaletteState();
 }
 
 function updatePaletteState(){
-  // Called whenever answers/review/visited/currentIndex change
-  const nodes = paletteEl.querySelectorAll('.pmini');
-
-  // counters for legend
-  let answeredCount = 0;
-  let notAnsweredCount = 0;
-  let notVisitedCount = 0;
-  let reviewCount = 0;
-
-  nodes.forEach(btn => {
+  paletteEl.querySelectorAll('.pmini').forEach(btn => {
     const i = Number(btn.dataset.index);
     btn.classList.remove('answered','not-answered','review','active');
-    // priority: active (current question)
     if (i === state.currentIndex){
       btn.classList.add('active');
     }
-    // review has high visibility (blue)
     if (state.review[i]){
       btn.classList.add('review');
-      reviewCount++;
-      // note: even if not visited, review flag counts as review in tally
     }
-    // visited & answered vs not-answered vs not-visited
     if (!state.visited[i]){
-      // not visited
-      btn.classList.remove('answered','not-answered');
       btn.style.background = '';
-      btn.classList.remove('review'); // do not show review for not-visited (unless explicitly set; but visited controls main)
-      // fallback to CSS default var(--not-visited)
-      btn.style.background = '';
-      notVisitedCount++;
     } else {
-      // visited
-      // if answered -> answered
       if (state.answers[i] !== null && state.answers[i] !== undefined){
         btn.classList.add('answered');
-        btn.classList.remove('not-answered');
-        answeredCount++;
       } else {
-        // visited but not answered
         btn.classList.add('not-answered');
-        btn.classList.remove('answered');
-        notAnsweredCount++;
       }
     }
-    // let CSS handle colors — ensure classes present
   });
 
-  // update legend counts (display in parentheses as requested)
+  let answeredCount = state.answers.filter(a=>a!==null && a!==undefined).length;
+  let notVisitedCount = state.visited.filter(v=>!v).length;
+  let notAnsweredCount = state.visited.filter((v,i)=>v && (state.answers[i]===null || state.answers[i]===undefined)).length;
+  let reviewCount = state.review.filter(Boolean).length;
+
   if (countAnsweredEl) countAnsweredEl.textContent = `(${answeredCount})`;
   if (countNotAnsweredEl) countNotAnsweredEl.textContent = `(${notAnsweredCount})`;
   if (countNotVisitedEl) countNotVisitedEl.textContent = `(${notVisitedCount})`;
@@ -471,7 +498,7 @@ function gotoQuestion(index){
   if (index < 0) index = 0;
   if (index >= QUESTIONS.length) index = QUESTIONS.length - 1;
   state.currentIndex = index;
-  state.visited[index] = true; // mark visited when navigated to
+  state.visited[index] = true;
   renderQuestion();
   updatePaletteState();
   window.scrollTo({top:0,behavior:'smooth'});
@@ -485,7 +512,7 @@ function renderQuestion(){
 
   const q = QUESTIONS[state.currentIndex];
   qnumEl.textContent = `Question ${q.qno} / ${QUESTIONS.length}`;
-  qtextEl.innerHTML = q.question; // use innerHTML so <em> and $$ are preserved for KaTeX
+  qtextEl.innerHTML = q.question;
   qmarksEl.textContent = `${q.marks} mark${q.marks>1?'s':''} • ${q.type.toUpperCase()}`;
 
   explainEl.classList.add('hidden');
@@ -498,10 +525,9 @@ function renderQuestion(){
       const wrap = document.createElement('div');
       wrap.className = 'opt';
       const inputId = `opt_${state.currentIndex}_${idx}`;
-      // label and option rendered via innerHTML in case option includes math/html
-      wrap.innerHTML = `<input type="radio" id="${inputId}" name="opt" value="${idx}" style="margin-right:8px"><label for="${inputId}">${opt}</label>`;
+      wrap.innerHTML = `<input type="radio" id="${inputId}" name="opt" value="${idx}"><label for="${inputId}">${opt}</label>`;
       wrap.addEventListener('click', ()=> {
-        document.querySelectorAll('.opt').forEach(o=>o.classList.remove('selected'));
+        optionsEl.querySelectorAll('.opt').forEach(o=>o.classList.remove('selected'));
         wrap.classList.add('selected');
         const radio = document.getElementById(inputId);
         if (radio) radio.checked = true;
@@ -518,7 +544,7 @@ function renderQuestion(){
       const wrap = document.createElement('div');
       wrap.className = 'opt';
       const inputId = `ms_${state.currentIndex}_${idx}`;
-      wrap.innerHTML = `<input type="checkbox" id="${inputId}" name="optms" value="${idx}" style="margin-right:8px"><label for="${inputId}">${opt}</label>`;
+      wrap.innerHTML = `<input type="checkbox" id="${inputId}" name="optms" value="${idx}"><label for="${inputId}">${opt}</label>`;
       wrap.addEventListener('click', ()=> {
         wrap.classList.toggle('selected');
         const cb = wrap.querySelector('input');
@@ -537,7 +563,7 @@ function renderQuestion(){
     const wrap = document.createElement('div');
     wrap.className = 'opt';
     const inputId = `nat_${state.currentIndex}`;
-    wrap.innerHTML = `<input id="${inputId}" type="number" step="any" style="width:160px;padding:8px;border-radius:6px;border:none;background:rgba(255,255,255,0.04);color:#fff" placeholder="Enter numeric answer">`;
+    wrap.innerHTML = `<input id="${inputId}" type="number" step="any" style="width:160px;padding:8px;border-radius:6px;border:none;background:transparent;color:#000" placeholder="Enter numeric answer">`;
     optionsEl.appendChild(wrap);
     const a = state.answers[state.currentIndex];
     if (a !== null && a !== undefined){
@@ -545,7 +571,6 @@ function renderQuestion(){
     }
   }
 
-  // re-render KaTeX for the question area only (if available)
   if (typeof renderMathInElement === "function") {
     try {
       renderMathInElement(qtextEl, {
@@ -554,14 +579,13 @@ function renderQuestion(){
           { left: "\\(", right: "\\)", display: false }
         ]
       });
-      // also render KaTeX inside options container (in case options contain math)
       renderMathInElement(optionsEl, {
         delimiters: [
           { left: "$$", right: "$$", display: true },
           { left: "\\(", right: "\\)", display: false }
         ]
       });
-    } catch (e) { /* if KaTeX fails, continue gracefully */ }
+    } catch (e) { }
   }
 
   updatePaletteState();
@@ -573,10 +597,10 @@ function renderQuestion(){
 function saveAnswer(){
   const q = QUESTIONS[state.currentIndex];
   if (q.type === 'mcq'){
-    const el = document.querySelector(`#options input[type="radio"]:checked`);
+    const el = optionsEl.querySelector(`input[type="radio"]:checked`);
     state.answers[state.currentIndex] = el ? Number(el.value) : null;
   } else if (q.type === 'msq'){
-    const checked = Array.from(document.querySelectorAll(`#options input[type="checkbox"]:checked`)).map(x=>Number(x.value));
+    const checked = Array.from(optionsEl.querySelectorAll(`input[type="checkbox"]:checked`)).map(x=>Number(x.value));
     state.answers[state.currentIndex] = checked.length ? checked : null;
   } else if (q.type === 'nat'){
     const el = document.getElementById(`nat_${state.currentIndex}`);
@@ -584,35 +608,25 @@ function saveAnswer(){
     const v = el.value;
     state.answers[state.currentIndex] = (v === '') ? null : Number(v);
   }
-  // visited stays true once visited
   state.visited[state.currentIndex] = true;
   updatePaletteState();
   liveInfo.textContent = 'Answers Saved';
 }
 
-/* Clear: per request — should clear selection and statuses except "not visited"
-   Behavior implemented:
-   - Clear current question's answer (set to null)
-   - Remove review flag for current question
-   - Keep visited = true (so it's shown as not-answered after clearing)
-*/
 clearBtn.addEventListener('click', () => {
-  // Clear DOM selection
   state.answers[state.currentIndex] = null;
   state.review[state.currentIndex] = false;
-  state.visited[state.currentIndex] = true; // ensure marked visited so palette shows not-answered
+  state.visited[state.currentIndex] = true;
   document.querySelectorAll('.opt').forEach(o => {
     o.classList.remove('selected');
     const inp = o.querySelector('input');
     if (inp) inp.checked = false;
   });
-  // If NAT input exists, clear it
   const nat = document.getElementById(`nat_${state.currentIndex}`);
   if (nat) nat.value = '';
   updatePaletteState();
 });
 
-/* Prev / Next / Save & Mark / ReviewNext */
 prevBtn.addEventListener('click', () => {
   saveAnswer();
   gotoQuestion(state.currentIndex - 1);
@@ -620,12 +634,6 @@ prevBtn.addEventListener('click', () => {
 nextBtn.addEventListener('click', () => {
   saveAnswer();
   gotoQuestion(state.currentIndex + 1);
-});
-saveMarkBtn.addEventListener('click', () => {
-  saveAnswer();
-  state.review[state.currentIndex] = true;
-  state.visited[state.currentIndex] = true;
-  updatePaletteState();
 });
 reviewNextBtn.addEventListener('click', () => {
   saveAnswer();
@@ -636,11 +644,7 @@ reviewNextBtn.addEventListener('click', () => {
 });
 
 /* --------------------------
-   PALETTE click handler (built into buildPalette)
---------------------------- */
-
-/* --------------------------
-   CORRECTNESS
+   CORRECTNESS (handles range-based NATs)
 --------------------------- */
 function isCorrect(idx){
   const q = QUESTIONS[idx];
@@ -654,11 +658,21 @@ function isCorrect(idx){
     if (user.size !== correct.size) return false;
     for (let v of correct) if (!user.has(v)) return false;
     return true;
-  } else if (q.type === 'nat'){
-    const target = Number(q.answerNum !== undefined ? q.answerNum : q.answerNum);
-    const got = Number(ans);
-    if (isNaN(got) || isNaN(target)) return false;
-    return Math.abs(got - target) <= 1e-6;
+  } else if (q.type === 'nat') {
+    const user = Number(ans);
+    if (isNaN(user)) return false;
+
+    // If explicit range provided, use it (inclusive)
+    if (q.answerMin !== undefined && q.answerMax !== undefined) {
+        return user >= q.answerMin && user <= q.answerMax;
+    }
+
+    // Fallback to exact match if only answerNum present
+    if (q.answerNum !== undefined) {
+        return Math.abs(user - Number(q.answerNum)) <= 1e-6;
+    }
+
+    return false;
   }
   return false;
 }
@@ -734,7 +748,6 @@ function submitExam(){
 
   finalScoreEl.textContent = `Your Final Score: ${score.toFixed(2)} / ${maxScore}  (${Math.round((score/maxScore)*10000)/100}%)`;
 
-  // Build review content (use innerHTML for question & explanation to allow <em> and LaTeX)
   reviewListEl.innerHTML = '';
   QUESTIONS.forEach((q, i) => {
     const wrap = document.createElement('div');
@@ -747,7 +760,6 @@ function submitExam(){
 
     const qt = document.createElement('div');
     qt.style.margin = '6px 0';
-    // <-- IMPORTANT: use innerHTML so <em>I</em> (italics) and math delimiters survive
     qt.innerHTML = q.question;
     wrap.appendChild(qt);
 
@@ -755,9 +767,8 @@ function submitExam(){
       const ul = document.createElement('ul');
       q.options.forEach((opt, idx) => {
         const li = document.createElement('li');
-        const correct = (q.type === 'mcq') ? (idx === q.answer) : (q.answerMulti.includes(idx));
+        const correct = (q.type === 'mcq') ? (idx === q.answer) : (Array.isArray(q.answerMulti) && q.answerMulti.includes(idx));
         const userSelected = (q.type === 'mcq') ? (state.answers[i] === idx) : (Array.isArray(state.answers[i]) && state.answers[i].includes(idx));
-        // innerHTML so option text can include math/html
         li.innerHTML = `${String.fromCharCode(65+idx)}. ${opt}`;
         if (correct) li.style.color = 'var(--accent)';
         if (userSelected && !correct) li.style.color = 'var(--wrong)';
@@ -767,7 +778,8 @@ function submitExam(){
       wrap.appendChild(ul);
     } else if (q.type === 'nat'){
       const p = document.createElement('div');
-      p.innerHTML = `<strong>Correct:</strong> ${q.answerNum} &nbsp;&nbsp; <strong>Your answer:</strong> ${state.answers[i] !== null && state.answers[i] !== undefined ? state.answers[i] : 'No answer'}`;
+      const correctText = (q.answerNum !== undefined) ? q.answerNum : ((q.answerMin !== undefined && q.answerMax !== undefined) ? `${q.answerMin} to ${q.answerMax}` : 'N/A');
+      p.innerHTML = `<strong>Correct:</strong> ${correctText} &nbsp;&nbsp; <strong>Your answer:</strong> ${state.answers[i] !== null && state.answers[i] !== undefined ? state.answers[i] : 'No answer'}`;
       wrap.appendChild(p);
     }
 
@@ -775,7 +787,6 @@ function submitExam(){
       const ex = document.createElement('div');
       ex.style.marginTop = '6px';
       ex.style.color = 'var(--muted)';
-      // use innerHTML so <em> and math delimiters render
       ex.innerHTML = `Explanation: ${q.explanation}`;
       wrap.appendChild(ex);
     }
@@ -783,7 +794,6 @@ function submitExam(){
     reviewListEl.appendChild(wrap);
   });
 
-  // After all review HTML is appended, re-render KaTeX inside the review container
   if (typeof renderMathInElement === "function") {
     try {
       renderMathInElement(reviewListEl, {
@@ -792,7 +802,7 @@ function submitExam(){
           { left: "\\(", right: "\\)", display: false }
         ]
       });
-    } catch(e) { /* ignore rendering errors */ }
+    } catch(e) { }
   }
 
   showSubmissionModal(`You scored ${score.toFixed(2)} out of ${maxScore}.`, ()=> {
@@ -820,7 +830,7 @@ window.addEventListener('keydown', (e)=>{
 });
 
 /* initialize no-op until start */
-function init(){ /* nothing until start */ }
+function init(){ }
 init();
 </script>
 </body>
